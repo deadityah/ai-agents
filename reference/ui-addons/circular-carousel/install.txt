@@ -1,0 +1,2 @@
+npx shadcn@latest add @nexus-labs/circular-carousel
+npm install framer-motion lucide-react

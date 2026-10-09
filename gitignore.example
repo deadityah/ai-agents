@@ -1,0 +1,31 @@
+# Anchored paths only. NEVER add bare lib/, lib64/, build/ or dist/ (they hide frontend/src/lib).
+# Antigravity: copy this to .gitignore in Phase 0 and run: git check-ignore -v frontend/src/lib/api.ts (must print nothing)
+
+# Secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python
+__pycache__/
+*.pyc
+/backend/.venv/
+/backend/venv/
+/backend/.pytest_cache/
+
+# Node / Next.js
+/frontend/node_modules/
+/frontend/.next/
+/frontend/out/
+/frontend/.vercel/
+*.tsbuildinfo
+next-env.d.ts
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,1 @@
+-- Supabase SQL schema for reports and daily/monthly usage tracking tables.

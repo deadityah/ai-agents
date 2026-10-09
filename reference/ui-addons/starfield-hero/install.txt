@@ -1,0 +1,2 @@
+   npx shadcn@latest add @nexus-labs/starfield-hero
+   npm install framer-motion lucide-react
