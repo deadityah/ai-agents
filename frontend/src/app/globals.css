@@ -1,1 +1,118 @@
-/* Global design tokens, Earth & Ink CSS variables, and Tailwind directives. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Earth & Ink Design System Tokens */
+  --bg: #F4EEE2;
+  --bg-soft: #FAF6EE;
+  --sand: #E8DCC4;
+  --gold-light: #E6CF9C;
+  --gold: #C9A24D;
+  --gold-deep: #8A6420;
+  --ink: #1B1814;
+  --ink-2: rgba(27, 24, 20, 0.76);
+  --ink-3: rgba(27, 24, 20, 0.62);
+  --header: #121110;
+  --on-header: #F4EEE2;
+  --on-header-2: rgba(244, 238, 226, 0.70);
+  --glass: rgba(250, 246, 238, 0.72);
+  --glass-border: rgba(90, 65, 25, 0.14);
+  --glass-shadow: 0 10px 30px rgba(60, 40, 10, 0.07);
+  --ok: #5B7B3A;
+  --warn: #B7791F;
+  --bad: #A94438;
+
+  /* Motion Tokens */
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 650ms;
+  --dur-page: 450ms;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* shadcn mapping to Earth & Ink tokens */
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--bg-soft);
+  --card-foreground: var(--ink);
+  --popover: var(--bg-soft);
+  --popover-foreground: var(--ink);
+  --primary: var(--header);
+  --primary-foreground: var(--on-header);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sand);
+  --muted-foreground: var(--ink-3);
+  --accent: var(--gold-light);
+  --accent-foreground: var(--ink);
+  --destructive: var(--bad);
+  --destructive-foreground: var(--on-header);
+  --border: var(--glass-border);
+  --input: var(--glass-border);
+  --ring: var(--gold-deep);
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--glass-border);
+    box-sizing: border-box;
+  }
+  html {
+    scrollbar-gutter: stable;
+  }
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
+    min-height: 100vh;
+    @apply font-sans;
+  }
+  .theme {
+    --font-sans: var(--font-sans);
+    --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, Consolas, monospace;
+    --font-heading: var(--font-sans);
+  }
+}
+
+@layer components {
+  .glass-panel,
+  .glass-card {
+    background-color: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .shimmer-sweep {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-sweep::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      rgba(244, 238, 226, 0) 0%,
+      rgba(255, 255, 255, 0.45) 50%,
+      rgba(244, 238, 226, 0) 100%
+    );
+    animation: shimmer 1.4s infinite ease-in-out;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

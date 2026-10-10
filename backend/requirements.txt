@@ -1,1 +1,12 @@
-# Python dependencies for ResearchPilot backend (to be pinned in Phase 1 / Phase 4)
+# Pinned Python dependencies for ResearchPilot backend (docs/04-BACKEND-SPEC.md §1)
+fastapi==0.110.0
+uvicorn[standard]==0.28.0
+pydantic==2.13.4
+pydantic-settings==2.15.0
+httpx==0.28.1
+python-dotenv==1.2.2
+supabase==2.32.0
+tavily-python==0.8.5
+langgraph==1.2.14
+langchain-core==1.6.9
+langchain-google-genai==4.4.0
