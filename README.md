@@ -123,3 +123,4 @@ If a phase fails a checklist item, paste the exact error into Antigravity and sa
 Paste this into Antigravity:
 
 > Read docs/00-START-HERE.md. Here is the exact error: [paste it]. Explain in plain English what caused it, fix it without changing the budget limits, and tell me how to verify the fix. Do not start the next phase.
+"# ai-agents" 
