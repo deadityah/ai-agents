@@ -2,7 +2,6 @@
 
 **Give it a topic. An AI agent plans, searches the web, reads pages, takes notes, and writes a cited report.**
 
-[**Live demo**](https://YOUR-VERCEL-URL.vercel.app) · [Demo video](https://YOUR-VIDEO-LINK) · [Report a bug](https://github.com/YOUR-USERNAME/researchpilot/issues)
 
 <!-- Add a screenshot or GIF here. Example: ![ResearchPilot screenshot](docs/images/screenshot.png) -->
 
