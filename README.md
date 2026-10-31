@@ -1,126 +1,215 @@
-# ResearchPilot: Your Step-by-Step Guide
+# ResearchPilot
 
-You give it a topic. An AI agent plans, searches the web, reads pages, takes notes and writes a cited report. You build it with Antigravity, one phase at a time.
+**Give it a topic. An AI agent plans, searches the web, reads pages, takes notes, and writes a cited report.**
 
-**How to use this file:** do the steps in order and tick each box. Don't skip ahead.
+[**Live demo**](https://YOUR-VERCEL-URL.vercel.app) · [Demo video](https://YOUR-VIDEO-LINK) · [Report a bug](https://github.com/YOUR-USERNAME/researchpilot/issues)
 
----
-
-## Part A: Accounts and keys (about 30 minutes)
-
-- [ ] **A1. Tavily key.** Go to app.tavily.com, sign up (free, no card). Copy your API key. Free plan = 1,000 credits per month (1 search = 1 credit; reading 5 pages = 1 credit).
-- [ ] **A2. Gemini key from a NEW project.** Go to Google AI Studio → create a **new project** → create an API key. Do NOT reuse DocuMind's key. Gemini limits are per project, so DocuMind and ResearchPilot would eat each other's quota.
-- [ ] **A3. Check your Gemini limits.** In AI Studio open the rate-limits/usage page and note the **requests per day** for your model. Limits change often, so always check yours. Your daily budget for this app should be about **one third** of that number (the default in the kit is 80).
-- [ ] **A4. New Supabase project** named `researchpilot`. Save the **Project URL** and the **service_role key** (Project Settings → API). The service_role key is secret. Never paste it in chat or in the frontend.
-- [ ] **A5. New empty GitHub repo** named `researchpilot` (private is fine until it's ready).
-- [ ] **A6. Render and Vercel** are already set up from DocuMind. You will create **new** services in them (not reuse DocuMind's).
-
-Keep all keys in a private notes file for now. They only go into `.env` files and the Render/Vercel settings pages.
+<!-- Add a screenshot or GIF here. Example: ![ResearchPilot screenshot](docs/images/screenshot.png) -->
 
 ---
 
-## Part B: Set up your project folder (15 minutes)
+## What it does
 
-- [ ] **B1.** Create a folder named `researchpilot` on your PC.
-- [ ] **B2.** Copy the `docs/` folder and this `README.md` into it.
-- [ ] **B3.** Create these folders inside it and fill them:
-  - `reference/logo/`: your logo image (PNG or SVG; transparent background is best; at least 512 px).
-  - `reference/ui-addons/`: your UI add-ons. **Name each file so the name says what it is** (for example `animated-button.tsx`, `marquee-ticker.tsx`, `faq-accordion.tsx`). Antigravity decides where to use each one from its name, and shows you a table to approve first.
-  - `reference/dot-background/`: the dot-background file(s) from DocuMind (only the behavior is reused; colors change).
-- [ ] **B4.** Open the `researchpilot` folder in Antigravity.
+You type a research topic. ResearchPilot does the rest:
 
----
+1. **Plans** the research and breaks the topic into search questions.
+2. **Searches** the web for each question.
+3. **Reads** the best pages.
+4. **Takes notes** and checks if it has enough.
+5. **Writes** a clear report with sources for every claim.
 
-## Part C: Build, one phase at a time
-
-**The loop for every phase (0, then D1 to D3, then 1 to 10):**
-
-1. Open `docs/06-BUILD-PLAN.md` and find the phase.
-2. Copy the **Prompt for Antigravity** from that phase and paste it into Antigravity.
-3. Wait for the report. If something is unclear, answer its question.
-4. Do the testing steps it gives you.
-5. Tick the **Done when** checklist **in that file** (you can edit it, or just keep score here).
-6. Make sure `npm run build` passed (frontend phases).
-7. Commit and push (ask Antigravity: *"commit with a clear message and push"*).
-8. Only then start the next phase.
-
-If a phase fails a checklist item, paste the exact error into Antigravity and say: *"Fix this. Do not start the next phase."*
-
-### Phase tracker
-
-- [ ] **Phase 0:** Prep and reference check
-- **Design track (the website is designed first, with fake data):**
-  - [ ] **Phase D1:** Colors, fonts, logo, black header with nav, footer, page transitions, add-on inventory (you approve the add-on table)
-  - [ ] **Phase D2:** Home and About pages
-  - [ ] **Phase D3:** Research, History and Report screens with mock data. **You say "design approved".**
-- [ ] **Phase 1:** Backend skeleton, live deploy, **CORS test on the live site**
-- [ ] **Phase 2:** Real stream client + run state machine (tested with the mock stream)
-- [ ] **Phase 3:** Database and real budget guard
-- [ ] **Phase 4:** Tools (Tavily) and Gemini wrapper
-- [ ] **Phase 5:** The LangGraph agent in the terminal
-- [ ] **Phase 6:** Streaming API, saving, history endpoints
-- [ ] **Phase 7:** Live frontend
-- [ ] **Phase 8:** Quality test and hardening
-- [ ] **Phase 9:** Final deploy and live checks
-- [ ] **Phase 10:** README, demo video, portfolio
+You watch every step live while the agent works. When it finishes, the report is saved to your history.
 
 ---
 
-## Part D: Where each key goes
+## Features
 
-| Key / setting | Local file | Live place |
-|---------------|-----------|-----------|
-| `GEMINI_API_KEY`, `TAVILY_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, budgets, `ALLOWED_ORIGINS` | `backend/.env` | Render → Environment |
-| `NEXT_PUBLIC_API_URL` | `frontend/.env.local` | Vercel → Settings → Environment Variables |
-
-- [ ] `ALLOWED_ORIGINS` on Render = your exact Vercel URL, like `https://researchpilot-xyz.vercel.app` (no slash at the end), plus `http://localhost:3000` for local testing.
-- [ ] `NEXT_PUBLIC_API_URL` on Vercel = your Render URL (https, no slash at the end).
-- [ ] After changing any env var, **redeploy** that service.
-
----
-
-## Part D2: The new look in 30 seconds
-
-- **Colors:** warm beige / off-white page, light golden accents, black header and footer.
-- **Fonts:** Fraunces (headings), DM Sans (text), Space Mono (small labels and numbers). Don't like them? In D1 say "swap the fonts to X" and Antigravity changes one file.
-- **Navigation:** black header with Home · Research · History · About. The gold underline slides between links.
-- **Motion:** pages slide left or right depending on where you navigate; sections slide in from alternating sides; text fades in and cross-fades when it changes; "How it works" scrolls sideways. Everything switches to plain fades if your device has "reduce motion" on.
-- **Your inputs:** logo image + UI add-ons (see B3). Fill in your own GitHub/LinkedIn/portfolio links later in `frontend/src/lib/site.ts`.
+- **Live progress.** See each step (planning, searching, reading, writing) as it happens, streamed to the screen.
+- **Cited reports.** Every claim links back to its source page.
+- **Three depth modes.** Quick, Standard and Deep. Deeper modes search more and use more AI calls.
+- **Hard limits on cost.** Each mode has a maximum number of AI calls per run (4 / 6 / 8). A daily budget stops the app from running past the free quota.
+- **Budget meter.** The app shows how much of today's budget is left and when it resets.
+- **History.** Past reports are saved per browser. No login needed.
+- **Handles errors well.** Clear messages when the server is waking up, the budget is used up, or a search fails.
+- **Accessible motion.** All animations switch to simple fades if your device has "reduce motion" turned on.
 
 ---
 
-## Part E: Your 5 safety rules (lessons from DocuMind)
+## How the agent works
 
-- [ ] **CORS is tested on the live site in Phase 1**, not at the end.
-- [ ] Before every push, `git ls-files frontend/src/lib` must list files (the `lib` folder must never be ignored).
-- [ ] `npm run build` passes before every push.
-- [ ] Keys only in `.env` files and the Render/Vercel settings. Never in GitHub. Never in chat.
-- [ ] Never ask Antigravity to remove the budget limits "just to test". Lower them instead.
-- [ ] Don't let Antigravity install extra packages for add-ons without telling you first.
+The agent is a graph built with [LangGraph](https://github.com/langchain-ai/langgraph). Each box is a step. The agent can loop back to search again if its notes are not good enough, but only up to the call limit for the chosen mode.
 
----
+```mermaid
+flowchart LR
+    A[Topic] --> B[Plan]
+    B --> C[Search]
+    C --> D[Read pages]
+    D --> E[Take notes]
+    E --> F{Enough?}
+    F -- No, and budget left --> C
+    F -- Yes --> G[Write report]
+    G --> H[Cited report]
+```
 
-## Part F: Good to know
+**Tools the agent can use**
 
-- **Your Gemini quota resets at midnight Pacific time.** That is about **12:30 PM IST** while the US is on daylight time, and **1:30 PM IST** after the US clocks change in early November. The meter in the app shows the exact time in your timezone.
-- **Render free tier sleeps.** The first visit after a while can take up to a minute. The app shows a "waking up" message. That's normal.
-- **Estimated cost per run:** Quick ≈ 3 AI calls, Standard ≈ 3–4, Deep ≈ 4–6. Hard caps: 4 / 6 / 8. After Phase 8 you'll have the real averages. Put them in your GitHub README.
-- **Reports are saved per browser** (no login). The app tells users not to enter private info.
-- **If you hit the daily AI budget,** the app says so and disables runs until the reset. You can still read saved reports.
+| Tool | What it does |
+|------|--------------|
+| Web search (Tavily) | Finds relevant pages for a question |
+| Page reader (Tavily) | Pulls clean text from a page |
 
----
-
-## Part G: Finishing
-
-- [ ] Record the demo video (Phase 10 gives you a 90-second script).
-- [ ] Add the live link and repo link to your portfolio, resume and LinkedIn.
-- [ ] Write 3 sentences in your own words for "What I learned" (what is an agent, what is a tool, why limits matter). If you can explain the agent graph out loud, you can answer interview questions about it.
+**Why limits matter.** An agent that can loop can also loop forever and burn money. ResearchPilot has a hard cap on AI calls per run and a daily budget for the whole app. These limits are part of the design, not an afterthought.
 
 ---
 
-## If something breaks
+## Tech stack
 
-Paste this into Antigravity:
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Next.js, React, TypeScript, Tailwind CSS |
+| Backend | FastAPI (Python) |
+| Agent | LangGraph |
+| AI model | Google Gemini |
+| Web search | Tavily |
+| Database | Supabase (Postgres) |
+| Hosting | Vercel (frontend), Render (backend) |
 
-> Read docs/00-START-HERE.md. Here is the exact error: [paste it]. Explain in plain English what caused it, fix it without changing the budget limits, and tell me how to verify the fix. Do not start the next phase.
-"# ai-agents" 
+---
+
+## Getting started
+
+### What you need
+
+- Node.js 18 or newer
+- Python 3.10 or newer
+- A [Tavily](https://app.tavily.com) API key (free plan available)
+- A [Google AI Studio](https://aistudio.google.com) Gemini API key
+- A [Supabase](https://supabase.com) project
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/YOUR-USERNAME/researchpilot.git
+cd researchpilot
+```
+
+### 2. Set up the backend
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate        # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env             # Then fill in your keys
+uvicorn main:app --reload
+```
+
+The API runs at `http://localhost:8000`.
+
+### 3. Set up the frontend
+
+```bash
+cd frontend
+npm install
+cp .env.example .env.local       # Then fill in the API URL
+npm run dev
+```
+
+The app runs at `http://localhost:3000`.
+
+### Environment variables
+
+**Backend** (`backend/.env`)
+
+| Variable | Description |
+|----------|-------------|
+| `GEMINI_API_KEY` | Your Gemini API key |
+| `TAVILY_API_KEY` | Your Tavily API key |
+| `SUPABASE_URL` | Your Supabase project URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key. **Keep it secret.** Backend only. |
+| `ALLOWED_ORIGINS` | Frontend URLs allowed to call the API, separated by commas. No slash at the end. |
+| Budget settings | Daily AI call budget and per-mode caps. See `.env.example` for the exact names. |
+
+**Frontend** (`frontend/.env.local`)
+
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_API_URL` | Your backend URL, for example `http://localhost:8000` |
+
+> Never commit `.env` files. Never put the service role key in the frontend.
+
+---
+
+## Deployment
+
+**Backend on Render**
+
+1. Create a new Web Service from this repo and set the root to `backend/`.
+2. Add all backend environment variables.
+3. Set `ALLOWED_ORIGINS` to your exact Vercel URL.
+
+**Frontend on Vercel**
+
+1. Import this repo and set the root to `frontend/`.
+2. Set `NEXT_PUBLIC_API_URL` to your Render URL.
+
+After you change any environment variable, redeploy that service.
+
+> **Note:** On Render's free plan the server sleeps when idle. The first request can take up to a minute. The app shows a "waking up" message while it starts.
+
+---
+
+## Project structure
+
+```
+researchpilot/
+├── backend/        # FastAPI app, LangGraph agent, tools, budget guard
+├── frontend/       # Next.js app (Home, Research, History, About)
+├── docs/           # Design notes and build plan
+└── README.md
+```
+
+---
+
+## Cost and limits
+
+| Mode | Typical AI calls | Hard cap |
+|------|------------------|----------|
+| Quick | about 3 | 4 |
+| Standard | about 3–4 | 6 |
+| Deep | about 4–6 | 8 |
+
+The daily budget is set to about one third of the Gemini daily request limit, so a few heavy users cannot use up the whole quota. It resets at midnight Pacific time. The app shows the reset time in your own timezone.
+
+<!-- After load testing, add real numbers here:
+Average AI calls per run: Quick __ · Standard __ · Deep __
+Average time per run: Quick __s · Standard __s · Deep __s -->
+
+---
+
+## Known limits
+
+- Reports are stored per browser, not per account. Clearing your browser data loses your history.
+- The app depends on free tiers (Gemini, Tavily, Supabase, Render). Heavy use can hit their limits.
+- The agent only reads pages it can reach. Paywalled or blocked pages are skipped.
+- Like any AI tool, it can make mistakes. Check important claims against the cited sources.
+- Do not enter private or sensitive information as a topic.
+
+---
+
+## What I learned
+
+<!-- Write 3 sentences in your own words. Ideas: what is an agent, what is a tool, why limits matter. -->
+
+---
+
+## Author
+
+**YOUR NAME**
+[GitHub](https://github.com/YOUR-USERNAME) · [LinkedIn](https://linkedin.com/in/YOUR-PROFILE) · [Portfolio](https://YOUR-PORTFOLIO)
+
+---
+
+## License
+
+MIT. See [LICENSE](LICENSE).
