@@ -206,7 +206,7 @@ Average time per run: Quick __s · Standard __s · Deep __s -->
 ## Author
 
 **YOUR NAME**
-[GitHub](https://github.com/YOUR-USERNAME) · [LinkedIn](https://linkedin.com/in/YOUR-PROFILE) · [Portfolio](https://YOUR-PORTFOLIO)
+[GitHub](https://github.com/deadityah) · [LinkedIn](https://linkedin.com/in/deadityah) · [Portfolio](https://deadityah.github.io/deaditya.github.io)
 
 ---
 
